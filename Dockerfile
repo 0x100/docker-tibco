@@ -1,10 +1,10 @@
-FROM debian:stable-slim
+FROM centos:7.7.1908
 
-MAINTAINER Ilya Lysenko <lysenko.ilya@gmail.com>
+MAINTAINER Ilya Lysenko <lysenko.iv@reliab.tech>
 
 RUN mkdir -p /usr/share/man/man1
-RUN apt-get update -y && \
-    apt-get install bc wget unzip openjdk-11-jdk curl lib32z1 bc lib32ncurses6 lib32stdc++6 lib32z1 lib32z1-dev -y
+RUN yum update -y && \
+    yum install bc wget unzip openjdk-11-jdk curl lib32z1 bc lib32ncurses6 lib32stdc++6 lib32z1 lib32z1-dev -y
 RUN groupadd -r tibgrp -g 433 && \
 	useradd -u 431 -r -m -g tibgrp -d /home/tibusr -s /bin/bash -c "TIBCO Docker image user" tibusr && \
 	chown -R tibusr:tibgrp /home/tibusr && \
@@ -19,8 +19,7 @@ ADD package/TIB_ems*_linux_x86_64.zip* /tmp/install/
 RUN cd /tmp/install/ && cat TIB_ems*_linux_x86_64.zip* > TIB_ems_linux_x86_64.zip && \
     unzip /tmp/install/TIB_ems_linux_x86_64.zip -d /tmp/install/tibems/
 RUN cd /tmp/install/tibems/TIB_ems* && \
-    for f in tar/*; do tar -xvf $f; done && \
-    mv opt/tibco/ems /opt/tibco
+    yum install -y rpm/*.rpm
 
 RUN rm -rf /tmp/install/
 
