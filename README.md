@@ -1,4 +1,4 @@
-## tibco-ce
+## docker-tibco
 
 Docker image of Tibco EMS CE (Community Edition)
 
