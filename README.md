@@ -6,8 +6,8 @@ Docker image of Tibco EMS CE (Community Edition)
 
 ### Build image
 
-    docker build .
+    docker build -t tibco:8.5.1 .
 
 ### Run
 
-    docker run <IMAGE_ID>
+    docker run -p 7222:7222 tibco:8.5.1
