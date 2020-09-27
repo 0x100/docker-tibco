@@ -14,8 +14,8 @@ RUN groupadd -r tibgrp -g 433 && \
 USER tibusr
 
 ADD package/TIB_ems*_linux_x86_64.zip* /tmp/install/
-RUN cd /tmp/install/ && cat TIB_ems*_linux_x86_64.zip* > TIB_ems*_linux_x86_64.zip && \
-    unzip /tmp/install/TIB_ems*_linux_x86_64.zip -d /tmp/install/tibems/
+RUN cd /tmp/install/ && cat TIB_ems*_linux_x86_64.zip* > TIB_ems_linux_x86_64.zip && \
+    unzip /tmp/install/TIB_ems_linux_x86_64.zip -d /tmp/install/tibems/
 RUN cd /tmp/install/tibems/TIB_ems* && \
     for f in tar/*; do tar -xvf $f; done && \
     mv opt/tibco/ems /opt/tibco
