@@ -1,2 +1,11 @@
-# docker-tibco
-Docker file for build an image of Tibco EMS CE (Community Edition)
+## tibco-ce
+
+Docker image of Tibco EMS CE (Community Edition)
+
+### Build image
+
+    docker build .
+
+### Run
+
+    docker run <IMAGE_ID>
