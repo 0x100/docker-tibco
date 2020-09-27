@@ -1,5 +1,7 @@
 FROM debian:stable-slim
 
+MAINTAINER Ilya Lysenko <lysenko.ilya@gmail.com>
+
 RUN mkdir -p /usr/share/man/man1
 RUN apt-get update -y && \
     apt-get install bc wget unzip openjdk-11-jdk curl lib32z1 bc lib32ncurses6 lib32stdc++6 lib32z1 lib32z1-dev -y
