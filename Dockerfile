@@ -25,7 +25,7 @@ RUN rm -rf /tmp/install/
 RUN mkdir -p /opt/tibco/ems/8.5/config
 ADD config/*.conf /opt/tibco/ems/8.5/config/
 
-RUN mkdir -p -m 777 /tmp/tibco/ems/datastore
+RUN mkdir -p /tmp/tibco/ems/datastore
 
 ENV TZ=Europe/Moscow
 EXPOSE 7222
