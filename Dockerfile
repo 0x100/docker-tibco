@@ -13,7 +13,7 @@ RUN groupadd -r tibgrp -g 433 && \
     mkdir /tmp/install && \
     chown -R tibusr:tibgrp /tmp/install
 
-USER tibusr
+USER root
 
 ADD package/TIB_ems*_linux_x86_64.zip* /tmp/install/
 RUN cd /tmp/install/ && cat TIB_ems*_linux_x86_64.zip* > TIB_ems_linux_x86_64.zip && \
