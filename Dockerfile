@@ -1,4 +1,4 @@
-FROM centos:latest
+FROM centos:7.7.1908
 
 MAINTAINER Ilya Lysenko <lysenko.ilya@gmail.com>
 
