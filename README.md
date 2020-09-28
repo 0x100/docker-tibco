@@ -10,4 +10,4 @@ Docker image of Tibco EMS CE (Community Edition)
 
 ### Run
 
-    docker run -p 7222:7222 --name tibco tibco:8.5.1
+    docker run -p 7222:7222 -d --name tibco tibco:8.5.1
