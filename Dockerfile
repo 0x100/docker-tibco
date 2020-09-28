@@ -1,19 +1,16 @@
 FROM centos:7.7.1908
 
-MAINTAINER Ilya Lysenko <lysenko.iv@reliab.tech>
+MAINTAINER Ilya Lysenko <lysenko.ilya@gmail.com>
 
 RUN mkdir -p /usr/share/man/man1
 RUN yum update -y && \
     yum install bc wget unzip openjdk-11-jdk curl lib32z1 bc lib32ncurses6 lib32stdc++6 lib32z1 lib32z1-dev -y
 RUN groupadd -r tibgrp -g 433 && \
-	useradd -u 431 -r -m -g tibgrp -d /home/tibusr -s /bin/bash -c "TIBCO Docker image user" tibusr && \
-	chown -R tibusr:tibgrp /home/tibusr && \
+    useradd -u 431 -r -m -g tibgrp -d /home/tibusr -s /bin/bash -c "TIBCO Docker image user" tibusr && \
+    chown -R tibusr:tibgrp /home/tibusr && \
     mkdir /opt/tibco && \
     chown -R tibusr:tibgrp /opt/tibco && \
-    mkdir /tmp/install && \
-    chown -R tibusr:tibgrp /tmp/install
-
-USER root
+    mkdir /tmp/install
 
 ADD package/TIB_ems*_linux_x86_64.zip* /tmp/install/
 RUN cd /tmp/install/ && cat TIB_ems*_linux_x86_64.zip* > TIB_ems_linux_x86_64.zip && \
@@ -23,10 +20,14 @@ RUN cd /tmp/install/tibems/TIB_ems* && \
 
 RUN rm -rf /tmp/install/
 
-RUN mkdir -p /opt/tibco/ems/8.5/config
+RUN mkdir -p /opt/tibco/ems/8.5/config && \
+    chown -R tibusr:tibgrp /opt/tibco/ems/8.5/config
 ADD config/*.conf /opt/tibco/ems/8.5/config/
 
-RUN mkdir -p /tmp/tibco/ems/datastore
+RUN mkdir -p /tmp/tibco/ems/datastore && \
+    chown -R tibusr:tibgrp /tmp/tibco/ems/datastore
+
+USER tibusr
 
 ENV TZ=Europe/Moscow
 EXPOSE 7222
